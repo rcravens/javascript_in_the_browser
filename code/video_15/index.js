@@ -3,3 +3,10 @@ console.clear();
 console.log('Module: Frameworks and Tools');
 console.log('Video: jQuery – Historical Context and Syntax Sugar');
 
+/*
+	•	DOM selection with $() vs querySelector
+	•	Chaining syntax (.addClass().text().on())
+	•	Why jQuery mattered (cross-browser, easier DOM manipulation)
+	•	Where it’s still used today (legacy projects, WordPress plugins)
+	•	Modern replacement: native JS + frameworks
+ */
