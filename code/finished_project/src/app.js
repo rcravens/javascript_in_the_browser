@@ -15,7 +15,7 @@ export class App {
 
         this.#table = new StockTable('stock-table', (symbol) => this.#on_remove_callback(symbol));
 
-        this.#fetcher = new StockFetcher('add-stock', 'stock-symbol', (stock) => this.#on_new_stock(stock));
+        this.#fetcher = new StockFetcher('add-stock', (stock) => this.#on_new_stock(stock));
     }
 
     init() {

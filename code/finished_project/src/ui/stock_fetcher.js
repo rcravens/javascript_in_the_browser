@@ -1,32 +1,39 @@
 import {Stock} from "../data/stock.js";
 
 export class StockFetcher {
-    constructor(button_id, input_id, callback) {
-        this.btn = document.getElementById(button_id);
-        this.input = document.getElementById(input_id);
-        this.callback = callback;
+    #form;
+    #input;
+    #btn
+    #callback;
+
+    constructor(form_id, callback) {
+        this.#form = document.getElementById(form_id);
+        this.#input = this.#form.querySelector('input');
+        this.#btn = this.#form.querySelector('button');
+        this.#callback = callback;
 
         this.#wire_up_button();
     }
 
 
     #wire_up_button() {
-        const obj = this;
-        this.btn.addEventListener('click', async function (evt) {
-            const symbol = obj.input.value.trim().toUpperCase();
+        this.#form.addEventListener('submit', async (evt) => {
+            evt.preventDefault();
+
+            const symbol = this.#input.value.trim().toUpperCase();
             if (!symbol) return;
 
-            obj.btn.disabled = true;
-            obj.btn.textContent = 'Adding...';
+            this.#btn.disabled = true;
+            this.#btn.textContent = 'Adding...';
             try {
                 const stock = await Stock.fetch(symbol);
-                obj.callback(stock);
-                obj.input.value = '';
+                this.#callback(stock);
+                this.#input.value = '';
             } catch (e) {
                 alert(e);
             } finally {
-                obj.btn.disabled = false;
-                obj.btn.textContent = 'Add Stock';
+                this.#btn.disabled = false;
+                this.#btn.textContent = 'Add Stock';
             }
         })
     }
