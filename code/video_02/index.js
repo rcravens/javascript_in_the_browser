@@ -47,8 +47,17 @@ console.log('Limiting Scope', symbol_input, add_symbol_btn);
 // Parent / child / closest
 const form_parent = form.parentElement;
 console.log('Parent', form_parent);
+
 const children = form.children;
 console.log('Children', children);
+
+const price_td = google_tr.children[2];
+console.log('Child: price_td', price_td);
+const price = parseFloat(price_td.innerText.trim().replace(/\$/g, ''));
+console.log('Child: price', price);
+
+const tbody = google_tr.closest('tbody');
+console.log('Closest: tbody', tbody);
 
 // -------------------- Modifying the DOM
 console.log('innerText', form.innerText);
@@ -69,4 +78,7 @@ google_tr.setAttribute('my_attribute', 'This is my attribute');
 google_tr.removeAttribute('my_attribute');
 
 google_tr.setAttribute('data-url', 'https://google.com');
+
+// NOTE: We will learn better ways to manipulate CSS and styles....
+google_tr.setAttribute('style', 'background-color:red');
 

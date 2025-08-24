@@ -6,10 +6,26 @@
     <title>Stock Picker</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen p-6">
-<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen p-6">
 
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Stock Picker</h1>
+<div class="flex flex-col items-end ml-3">
+    <input class="mode-switch sr-only" id="mode-switch" name="mode-switch" type="checkbox"/>
+    <label class="relative cursor-pointer p-2" for="mode-switch">
+        <svg class="dark:hidden" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill-slate-300" d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.413-1.414zM14 7h2v2h-2zM12.95 14.433l-1.414-1.413 1.413-1.415 1.415 1.414zM7 14h2v2H7zM2.98 14.364l-1.413-1.415 1.414-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.706 4.463 3.12 3.05 4.535 1.636 3.12z"/>
+            <path class="fill-slate-400" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z"/>
+        </svg>
+        <svg class="hidden dark:block" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+            <path class="fill-slate-400" d="M6.2 1C3.2 1.8 1 4.6 1 7.9 1 11.8 4.2 15 8.1 15c3.3 0 6-2.2 6.9-5.2C9.7 11.2 4.8 6.3 6.2 1Z"/>
+            <path class="fill-slate-500" d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z"/>
+        </svg>
+        <span class="sr-only">Switch to light / dark version</span>
+    </label>
+</div>
+
+<div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">Stock Picker</h1>
 
     <div class="mb-6">
         <form class="flex gap-3" id="add-stock">
@@ -28,7 +44,7 @@
 
     <table class="min-w-full table-auto border-collapse" id="stock-table">
         <thead>
-        <tr class="bg-gray-200 text-gray-700">
+        <tr class="bg-gray-200 text-gray-700 dark:bg-gray-900 dark:text-gray-300">
             <th class="px-4 py-2 text-left">Symbol</th>
             <th class="px-4 py-2 text-left">Date</th>
             <th class="px-4 py-2 text-left">Price</th>
@@ -39,7 +55,7 @@
         </tr>
         </thead>
         <tbody id="stock-table-body">
-        <tr class="border-b hover:bg-gray-50 transition" data-symbol="AAPL">
+        <tr class="border-b border-gray-300 dark:border-gray-700 text-black dark:text-white hover:bg-gray-50 dark:hover:bg-gray-900 transition" data-symbol="AAPL">
             <td class="px-4 py-2">AAPL</td>
             <td class="px-4 py-2">2025-08-21</td>
             <td class="px-4 py-2">$145.09</td>
