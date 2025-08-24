@@ -38,16 +38,16 @@
             <th class="px-4 py-2 text-left">Remove</th>
         </tr>
         </thead>
-        <tbody id="stock-table-body">
-        <tr class="border-b hover:bg-gray-50 transition" data-symbol="AAPL">
+        <tbody id="stock-table-body" onclick="console.log('tbody')">
+        <tr class="border-b hover:bg-gray-50 transition" data-symbol="AAPL" onclick="console.log('tr')">
             <td class="px-4 py-2">AAPL</td>
             <td class="px-4 py-2">2025-08-21</td>
             <td class="px-4 py-2">$145.09</td>
             <td class="px-4 py-2">2025-03-31</td>
             <td class="px-4 py-2">$130.09</td>
             <td class="px-4 py-2 text-green-600">+1.2%</td>
-            <td class="px-4 py-2">
-                <button class="text-red-500 hover:text-red-700 remove-row">Remove</button>
+            <td class="px-4 py-2" onclick="console.log('td')">
+                <button class="text-red-500 hover:text-red-700 remove-row" onclick="console.log('button');event.stopPropagation();">Remove</button>
             </td>
         </tr>
         <tr class="border-b hover:bg-gray-50 transition" data-symbol="GOOGL">
@@ -63,8 +63,10 @@
         </tr>
         </tbody>
     </table>
-
 </div>
+
+<div class="max-w-4xl mx-auto p-8 text-center" id="footer">footer</div>
+
 <script src="index.js" type="module"></script>
 </body>
 </html>
