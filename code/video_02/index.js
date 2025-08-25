@@ -38,6 +38,8 @@ const stock_trs = document.querySelectorAll('tbody tr');
 console.log('Combination 1', stock_trs);
 const up_stock_trs = document.querySelectorAll('tbody tr:has(td.text-green-600)');
 console.log('Combination 2', up_stock_trs);
+const submit_btn = document.querySelector('#add-stock button[type="submit"]')
+console.log('Combination 3', submit_btn);
 
 // Limiting query scope
 const symbol_input = form.querySelector('input');
