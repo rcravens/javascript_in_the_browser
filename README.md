@@ -1,6 +1,8 @@
 # 🚀 JavaScript in the Browser 🚀
 
-This code supplements the JavaScript course that is available on [TekCasts](https://tekcasts.com):
+This code supplements the JavaScript course that is available on [TekCasts](https://tekcasts.com).
+
+Bring your web pages to life with pure JavaScript! In this course, you’ll learn how to manipulate the DOM 🌳, handle events 🖱️, fetch data 🌐, and build interactive UIs — all while understanding how the browser really works under the hood. We’ll finish by exploring app structure 🏗️ and frameworks 📦 so you’re ready to tackle modern frontend development with confidence.
 
 ‼️ What Is Covered?
 
