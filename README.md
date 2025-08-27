@@ -36,7 +36,7 @@ This code supplements the JavaScript course that is available on [TekCasts](http
 - Simple Frontend App Architecture [code](code/video_13/index.js) | [video](https://tekcasts.com)
 - Building a Small Project [code](code/video_14/index.js) | [video](https://tekcasts.com)
 
-#### 👉 Frameworks and Tools
+#### 👉 Frameworks and Libraries
 
 - jQuery – Historical Context and Syntax Sugar [code](code/video_15/index.js) | [video](https://tekcasts.com)
 - Alpine.js – Modern Lightweight Reactive JS [code](code/video_16/index.js) | [video](https://tekcasts.com)
