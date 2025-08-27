@@ -39,4 +39,4 @@ This code supplements the JavaScript course that is available on [TekCasts](http
 #### 👉 Frameworks and Libraries
 
 - jQuery – Historical Context and Syntax Sugar [code](code/video_15/index.js) | [video](https://tekcasts.com)
-- Alpine.js – Modern Lightweight Reactive JS [code](code/video_16/index.js) | [video](https://tekcasts.com)
+- Framework & Library Overview [code](code/video_16/index.js) | [video](https://tekcasts.com)
