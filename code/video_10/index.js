@@ -53,4 +53,4 @@ $.ajax({
     error: function (jqXHR, textStatus, errorThrown) {
         console.log('jQuery Error', textStatus, errorThrown);
     }
-})
+});
