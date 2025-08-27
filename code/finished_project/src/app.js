@@ -15,11 +15,11 @@ export class App {
         this.use_cache = true;
         console.log(this.use_cache ? 'App is using the CACHE' : 'App is using the API');
 
-        this.#table = new StockTable('stock-table');
-        document.addEventListener(RemoveSymbolEvent.event_name, (evt) => this.#on_remove_callback(evt));
-
         this.#fetcher = new StockFetcher('add-stock');
         document.addEventListener(NewStockDataEvent.event_name, evt => this.#on_new_stock(evt));
+
+        this.#table = new StockTable('stock-table');
+        document.addEventListener(RemoveSymbolEvent.event_name, (evt) => this.#on_remove_callback(evt));
     }
 
     init() {
