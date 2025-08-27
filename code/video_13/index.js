@@ -31,4 +31,59 @@ console.log('Video: Simple Frontend App Architecture');
             - data is shared with common models
             - external data (api) is transformed into a common model
             - features are code separated and runtime assembled
+            - use events to wire together components
  */
+
+// ---- How to raise custom events?
+
+document.addEventListener('my_simple_event', event => {
+    console.log('my_simple_event', 'handler', event);
+});
+
+const simple_event = new Event('my_simple_event');
+document.dispatchEvent(simple_event);
+
+
+document.addEventListener('my_custom_event', event => {
+    console.log('my_custom_event', 'handler', event);
+});
+
+const custom_event = new CustomEvent('my_custom_event', {
+    detail: {
+        data: {symbol: 'AAPL', price: 123.45}
+    }
+});
+document.dispatchEvent(custom_event);
+
+
+// ---- Application Example
+
+class RemoveSymbolEvent extends Event {
+    static event_name = 'remove_symbol';
+
+    constructor(symbol) {
+        super(RemoveSymbolEvent.event_name, {bubbles: true});
+        this.symbol = symbol;
+    }
+}
+
+document.querySelector('tbody').addEventListener('click', evt => {
+    if (evt.target.tagName === 'BUTTON' && evt.target.classList.contains('remove-row')) {
+        const tr = evt.target.closest('tr');
+        const symbol = tr.getAttribute('data-symbol');
+        const remove_event = new RemoveSymbolEvent(symbol);
+        evt.target.dispatchEvent(remove_event);
+    }
+})
+
+// UI (Table Component) Listener
+//
+document.addEventListener(RemoveSymbolEvent.event_name, evt => {
+    console.log(RemoveSymbolEvent.event_name, evt, 'remove row from table');
+});
+
+// Storage Listener
+//
+document.addEventListener(RemoveSymbolEvent.event_name, evt => {
+    console.log(RemoveSymbolEvent.event_name, evt, 'remove row symbol from localStorage');
+});

@@ -5,8 +5,10 @@ console.log('Video: Building a Small Project');
 
 /*
 	•	Bringing everything together (Stock Picker App):
-	•	DOM selection + events
-	•	Fetch API for data
-	•	localStorage for persistence
-	•	Error handling for resilience
+
+	1. Stock Fetcher (input + button)
+	2. Selected Stocks Storage / Retrieval
+	3. Stock API (external data source + mocked data)
+	4. Stock Table (table + rows + remove)
  */
+

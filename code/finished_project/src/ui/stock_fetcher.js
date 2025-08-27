@@ -1,16 +1,15 @@
 import {Stock} from "../data/stock.js";
+import {NewStockDataEvent} from "../events/new_stock_data.js";
 
 export class StockFetcher {
     #form;
     #input;
     #btn
-    #callback;
 
-    constructor(form_id, callback) {
+    constructor(form_id) {
         this.#form = document.getElementById(form_id);
         this.#input = this.#form.querySelector('input');
         this.#btn = this.#form.querySelector('button');
-        this.#callback = callback;
 
         this.#wire_up_button();
     }
@@ -27,7 +26,11 @@ export class StockFetcher {
             this.#btn.textContent = 'Adding...';
             try {
                 const stock = await Stock.fetch(symbol);
-                this.#callback(stock);
+
+                // raise event
+                const event = new NewStockDataEvent(stock);
+                document.dispatchEvent(event);
+
                 this.#input.value = '';
             } catch (e) {
                 alert(e);

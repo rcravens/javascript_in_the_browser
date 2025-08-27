@@ -36,7 +36,6 @@ function fetch_api_data(symbol) {
             //
             symbol = 'IBM';   // override to allow their demo API key to work
             const api_key = 'demo';
-            // const api_key = 'KPXUYHVL58QXW86D';
 
             const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${api_key}`);
             if (!response.ok) {

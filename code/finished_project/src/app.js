@@ -1,6 +1,8 @@
 import {Stock} from './data/stock.js';
 import {StockTable} from './ui/stock_table.js';
 import {StockFetcher} from "./ui/stock_fetcher.js";
+import {RemoveSymbolEvent} from "./events/remove_symbol.js";
+import {NewStockDataEvent} from "./events/new_stock_data.js";
 
 export class App {
     #my_stocks = [];
@@ -13,9 +15,11 @@ export class App {
         this.use_cache = true;
         console.log(this.use_cache ? 'App is using the CACHE' : 'App is using the API');
 
-        this.#table = new StockTable('stock-table', (symbol) => this.#on_remove_callback(symbol));
+        this.#table = new StockTable('stock-table');
+        document.addEventListener(RemoveSymbolEvent.event_name, (evt) => this.#on_remove_callback(evt));
 
-        this.#fetcher = new StockFetcher('add-stock', (stock) => this.#on_new_stock(stock));
+        this.#fetcher = new StockFetcher('add-stock');
+        document.addEventListener(NewStockDataEvent.event_name, evt => this.#on_new_stock(evt));
     }
 
     init() {
@@ -25,8 +29,14 @@ export class App {
         this.#refresh_data_and_display();
     }
 
-    #on_remove_callback(symbol) {
-        this.#remove_symbol(symbol);
+    #on_remove_callback(evt) {
+        this.#remove_symbol(evt.symbol);
+    }
+
+    #on_new_stock(evt) {
+        if (!evt.stock) return;
+
+        this.#process_stock_data(evt.stock);
     }
 
     #remove_symbol(symbol) {
@@ -40,12 +50,8 @@ export class App {
         if (this.#stock_data.hasOwnProperty(symbol)) {
             delete this.#stock_data[symbol];
         }
-    }
 
-    #on_new_stock(stock) {
-        if (!stock) return;
-
-        this.#process_stock_data(stock);
+        console.log('removed symbol from data', symbol);
     }
 
     #store_ticker_symbols() {

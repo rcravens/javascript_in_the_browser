@@ -1,8 +1,8 @@
-export class StockTable {
-    constructor(table_id, on_remove_callback) {
-        this.table = document.getElementById(table_id);
+import {RemoveSymbolEvent} from "../events/remove_symbol.js";
 
-        this.on_remove_callback = on_remove_callback;
+export class StockTable {
+    constructor(table_id) {
+        this.table = document.getElementById(table_id);
 
         this.#wire_up_remove_buttons();
     }
@@ -78,10 +78,11 @@ export class StockTable {
             if (evt.target.tagName === 'BUTTON' && evt.target.classList.contains('remove-row')) {
                 const row = evt.target.closest('tr');
                 const symbol = row.dataset.symbol;
-                row.remove();
-                console.log('Removed stock:', symbol);
 
-                if (this.on_remove_callback) this.on_remove_callback(symbol);
+                const remove_event = new RemoveSymbolEvent(symbol);
+                evt.target.dispatchEvent(remove_event);
+
+                row.remove();   // Do not remove row before dispatching event, or it WILL NOT bubble
             }
         })
     }
