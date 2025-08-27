@@ -1,4 +1,6 @@
 // TODO: JS goes here!
+import {refresh_all_stocks} from "./stock_refresher.js";
+
 console.clear();
 console.log('Module: Error Handling and UI Resilience');
 console.log('Video: Error Handling in the UI');
@@ -36,65 +38,61 @@ console.log('after try')
 
 // ---- fetch async/await
 
-function async_code() {
+function async_code(version) {
     return new Promise(function (resolve, reject) {
-        console.log('starting async_code');
+        console.log(version, 'starting async_code');
         if (Math.random() < 0.5) {
             // DO NOT THROW
             // console.log('async_code failed - throw new Error');
             // throw new Error('async_code failed - throw new Error');
 
-            console.log('async_code failed - reject');
+            console.log(version, 'async_code failed - reject');
             reject('async_code failed - reject');
         } else {
             resolve({name: 'Bob', color: 'blue'});
         }
-        console.log('finishing async_code');
+        console.log(version, 'finishing async_code');
     });
 }
 
 console.log('-------- async: VERSION 1 async/await');
-console.log('before try');
+console.log('version 1', 'before try');
 try {
-    console.log('before async_code');
-    const result = await async_code();
-    console.log('result', result);
-    console.log('after async_code');
+    console.log('version 1', 'before async_code');
+    const result = await async_code('version 1');
+    console.log('version 1', 'result', result);
+    console.log('version 1', 'after async_code');
 } catch (e) {
-    console.log('catch')
-    console.log(e);
+    console.log('version 1', 'catch', e)
 } finally {
-    console.log('finally');
+    console.log('version 1', 'finally');
 }
-console.log('after try')
+console.log('version 1', 'after try')
 
 
 console.log('-------- async: VERSION 2 then/catch');
-console.log('before try');
+console.log('version 2', 'before try');
 try {
-    console.log('before async_code');
-    async_code()
-        .then(result => console.log(result))
-        .catch(reason => console.log(reason));
-    console.log('after async_code');
+    console.log('version 2', 'before async_code');
+    async_code('version 2')
+        .then(result => console.log('version 2', result))
+        .catch(reason => console.log('version 2', reason));
+    console.log('version 2', 'after async_code');
 } catch (e) {
-    console.log('catch')
-    console.log(e);
+    console.log('version 2', 'catch', e)
 } finally {
-    console.log('finally');
+    console.log('version 2', 'finally');
 }
-console.log('after try')
+console.log('version 2', 'after try')
 
 
-function get_user_preferences(email) {
-    return new Promise(function (resolve, reject) {
-        console.log('fetching user...');
-        if (Math.random() < 0.5) {
-            console.log('...user not found');
-            reject('User not found.');
-        } else {
-            resolve({email: email, color: 'blue',});
-        }
-        console.log('finishing async_code');
-    });
-}
+// ---- error integration with UI
+console.log('-------- UI Error Integration');
+
+//
+// fetch_stock_data('AAPL')
+//     .then(result => console.log('ui & errors', result))
+//     .catch(error => console.log('ui & errors', error));
+
+// refresh_all_stocks();
+setInterval(refresh_all_stocks, 5000);
