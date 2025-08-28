@@ -144,12 +144,12 @@ create_form.addEventListener('submit', (evt) => {
 });
 
 // Probably wrap this form handler into a class / component
-// const create_form_component = new CreateAccountForm(on_success_callback, on_error_callback);
-//
-// function on_success_callback(data) {
-//     console.log('Submit Success', data);
-// }
-//
-// function on_error_callback(error) {
-//     console.log('Submit Error', error);
+const create_form_component = new CreateAccountForm(on_success_callback, on_error_callback);
+
+function on_success_callback(data) {
+    console.log('Submit Success', data);
+}
+
+function on_error_callback(error) {
+    console.log('Submit Error', error);
 }
