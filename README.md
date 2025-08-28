@@ -23,7 +23,7 @@ Bring your web pages to life with pure JavaScript! In this course, you’ll lear
 - Understanding the Event Loop [code](code/video_07/index.html) | [video](https://tekcasts.com)
 - Timers [code](code/video_08/index.html) | [video](https://tekcasts.com)
 
-#### 👉 Data and Networking
+#### 👉 Data, Networking, and Other Integrations
 
 - Fetch API Basics [code](code/video_09/index.html) | [video](https://tekcasts.com)
 - AJAX Requests (Historical Context) [code](code/video_10/index.html) | [video](https://tekcasts.com)

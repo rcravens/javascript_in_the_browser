@@ -1,6 +1,6 @@
 // TODO: JS goes here!
 console.clear();
-console.log('Module: Data and Networking');
+console.log('Module: Data, Networking, and Other Integrations');
 console.log('Video: Fetch API Basics');
 
 /*

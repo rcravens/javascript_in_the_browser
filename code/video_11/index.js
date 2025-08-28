@@ -2,7 +2,7 @@
 import {TripRecorder} from './trip_recorder.js'
 
 console.clear();
-console.log('Module: Data and Networking');
+console.log('Module: Data, Networking, and Other Integrations');
 console.log('Video: Introduction to Browser APIs');
 
 /*
