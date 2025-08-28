@@ -23,6 +23,8 @@ export class CreateAccountForm {
         submit_btn.disabled = true;
 
         const data = this.#validate_data();
+
+        create_form.querySelectorAll('span.error').forEach(el => el.classList.add('hidden'));
         if (!data.is_valid) {
             this.#show_validation_errors(data);
 
@@ -47,8 +49,19 @@ export class CreateAccountForm {
         }
 
         // validate the input
+        const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email_regex.test(data.email.toString())) {
+            data.errors['email'] = 'Enter a valid email';
+            data.is_valid = false;
+        }
+
         if (data.password !== data.confirm_password) {
             data.errors['password'] = 'Passwords do not match';
+            data.is_valid = false;
+        }
+
+        if (data.password.length < 5) {
+            data.errors['password'] = 'Passwords must be at least 5 characters';
             data.is_valid = false;
         }
 

@@ -1,5 +1,4 @@
 // TODO: JS goes here!
-import {CreateAccountForm} from "./create_account.js";
 
 console.clear();
 console.log('Module: Events and Interactions');
@@ -13,7 +12,7 @@ console.log('Video: Working with Forms and User Input');
 	•	Example: Create Account
  */
 
-
+// Access via elements
 const email_el = document.getElementById('email');
 email_el.value = 'test@example.com';
 console.log(email_el, email_el.value);
@@ -28,40 +27,40 @@ console.log(password_confirm_el, password_confirm_el.value);
 
 const terms_el = document.getElementById('terms');
 terms_el.checked = true;
-console.log(terms_el, terms_el.value);
+console.log(terms_el, terms_el.value, terms_el.checked);
 
-console.log(document.forms['create-account']['email']);
+// Access via document.forms
+console.log(document.forms['create-account']['email'].value);
 
+// Access via form element
 const create_form = document.getElementById('create-account');
-console.log(create_form, create_form.elements, create_form.elements.email.value, create_form.email.value);
+console.log(create_form, create_form.elements, create_form.elements.email, create_form.email.value);
 
-// https://developer.mozilla.org/en-US/docs/Web/API/FormData
+// Access via FormData
 const form_data = new FormData(create_form);
+console.log(form_data);
 console.log(...form_data);
 for (const [key, val] of form_data.entries()) {
     console.log(`${key}: ${val}`)
 }
 
+// Convert to ajax request
 create_form.addEventListener('submit', (evt) => {
-    evt.preventDefault();   // Prevent default form submission (HTTP POST to action URL
+    evt.preventDefault();
 
     // ---- CLIENT SIDE VALIDATION
 
-    // HTML5 Validation:
-    // - types (https://www.w3schools.com/html/html_form_input_types.asp)
-    // - attributes (https://www.w3schools.com/html/html_form_attributes.asp)
+    // HTML5 Validation
 
     const create_form = document.getElementById('create-account');
     const submit_btn = create_form.querySelector('button[type="submit"]');
-
-    // disable the submit button
     submit_btn.disabled = true;
 
-    // JS Simple Validation:
-    //
+    // JS Validation
+    const form_data = new FormData(create_form);
+
     // intentionally build the data payload
     //  ...this is an opportunity to scrub and transform
-    const form_data = new FormData(create_form);
     const data = {
         email: form_data.get('email'),
         password: form_data.get('password'),
@@ -72,8 +71,19 @@ create_form.addEventListener('submit', (evt) => {
     }
 
     // validate the input
+    const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email_regex.test(data.email.toString())) {
+        data.errors['email'] = 'Enter a valid email';
+        data.is_valid = false;
+    }
+
     if (data.password !== data.confirm_password) {
         data.errors['password'] = 'Passwords do not match';
+        data.is_valid = false;
+    }
+
+    if (data.password.length < 5) {
+        data.errors['password'] = 'Passwords must be at least 5 characters';
         data.is_valid = false;
     }
 
@@ -81,6 +91,9 @@ create_form.addEventListener('submit', (evt) => {
         data.errors['terms'] = 'Required to proceed.';
         data.is_valid = false;
     }
+
+    // reset existing errors
+    create_form.querySelectorAll('span.error').forEach(el => el.classList.add('hidden'));
 
     if (!data.is_valid) {
         // provide feedback to the user
@@ -100,10 +113,7 @@ create_form.addEventListener('submit', (evt) => {
         return;
     }
 
-    // INFO: JS Validation Libraries
-
-
-    // ---- FORM SUBMISSION (includes SERVER-SIDE VALIDATION + PROCESSING)
+    // ---- FORM SUBMISSION (submit, server side validation, processing, result)
 
     // Either default action OR preventDefault and use JS to send
     const url = create_form.getAttribute('action');
@@ -117,29 +127,16 @@ create_form.addEventListener('submit', (evt) => {
     })
         .then(response => response.json())
         .then(data => {
-            // clear the form data
+            console.log('success:', data)
             create_form.reset();
-
-            // process the response
-            console.log('Success:', data)
-
         })
         .catch(error => {
             // process the error
-            console.log('Error:', error)
+            console.log('error', error);
         })
         .finally(() => {
+            // wrap up any loose ends
             submit_btn.disabled = false;
+            console.log('finally');
         });
 });
-
-// Probably wrap this form handler into a class / component
-const create_form_component = new CreateAccountForm(on_success_callback, on_error_callback);
-
-function on_success_callback(data) {
-    console.log('Submit Success', data);
-}
-
-function on_error_callback(error) {
-    console.log('Submit Error', error);
-}
