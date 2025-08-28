@@ -187,3 +187,37 @@ console.log('platform', platform);
 // clipboard integration
 await navigator.clipboard.writeText('https://tekcasts.com');
 console.log('data copied to clipboard');
+
+// camera integration
+navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+        devices.forEach(device => console.log(device));
+    });
+
+const camera_id = '9ee833b617184b81b58b30caf9235b72aa812acefafd9ade202688fecded2ff1';
+
+const video_el = document.getElementById('video');
+
+async function start_camera() {
+    const constraints = {
+        video: {
+            deviceId: {exact: camera_id}
+        }
+    };
+
+    try {
+        video_el.srcObject = await navigator.mediaDevices.getUserMedia(constraints)
+    } catch (e) {
+        console.log('camera error', e);
+    }
+}
+
+start_camera();
+
+const photo_canvas = document.getElementById('canvas');
+const take_photo_btn = document.getElementById('take_photo');
+take_photo_btn.addEventListener('click', () => {
+    photo_canvas.width = video_el.videoWidth;
+    photo_canvas.height = video_el.videoHeight;
+    photo_canvas.getContext('2d').drawImage(video_el, 0, 0, photo_canvas.width, photo_canvas.height);
+})
