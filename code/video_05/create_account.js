@@ -24,7 +24,7 @@ export class CreateAccountForm {
 
         const data = this.#validate_data();
 
-        create_form.querySelectorAll('span.error').forEach(el => el.classList.add('hidden'));
+        this.#create_form.querySelectorAll('span.error').forEach(el => el.classList.add('hidden'));
         if (!data.is_valid) {
             this.#show_validation_errors(data);
 

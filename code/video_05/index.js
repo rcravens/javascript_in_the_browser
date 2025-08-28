@@ -1,5 +1,7 @@
 // TODO: JS goes here!
 
+import {CreateAccountForm} from "./create_account.js";
+
 console.clear();
 console.log('Module: Events and Interactions');
 console.log('Video: Working with Forms and User Input');
@@ -140,3 +142,14 @@ create_form.addEventListener('submit', (evt) => {
             console.log('finally');
         });
 });
+
+// Probably wrap this form handler into a class / component
+// const create_form_component = new CreateAccountForm(on_success_callback, on_error_callback);
+//
+// function on_success_callback(data) {
+//     console.log('Submit Success', data);
+// }
+//
+// function on_error_callback(error) {
+//     console.log('Submit Error', error);
+}
