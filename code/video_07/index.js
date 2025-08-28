@@ -38,21 +38,7 @@ let process_count = 0;
 
 function process_many_times() {
     process_count++;
-    if (process_count % 5 === 0) {
-        microtask_count = 0;
-        queueMicrotask(microtask);
-    }
     console.log('process many times: ' + process_count);
-}
-
-function my_promise() {
-    return new Promise((resolve, reject) => {
-        let sum = 0
-        for (let i = 0; i < 1; i++) {
-            sum += i;
-        }
-        resolve(sum);
-    });
 }
 
 let microtask_count = 0;
@@ -65,6 +51,17 @@ function microtask() {
     }
 }
 
+function my_promise() {
+    return new Promise((resolve, reject) => {
+        const start_ms = Date.now();
+        let delta_ms = 0;
+        while (delta_ms < 2000) {
+            delta_ms = Date.now() - start_ms;
+        }
+        resolve(delta_ms);
+    });
+}
+
 
 console.log('before');
 
@@ -75,9 +72,7 @@ setTimeout(process_once, 5000);
 setInterval(process_many_times, 1000);
 
 // Create microtasks
-my_promise().then((result) => {
-    console.log(`my promise: sum=${result}`);
-});
-queueMicrotask(microtask);
+// queueMicrotask(microtask);
+my_promise().then(result => console.log(`my_promise: delta=${result}`))
 
 console.log('end of file');
