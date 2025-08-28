@@ -27,7 +27,7 @@ Bring your web pages to life with pure JavaScript! In this course, you’ll lear
 
 - Fetch API Basics [code](code/video_09/index.html) | [video](https://tekcasts.com)
 - AJAX Requests (Historical Context) [code](code/video_10/index.html) | [video](https://tekcasts.com)
-- Introduction to Browser APIs [code](code/video_11/index.html) | [video](https://tekcasts.com)
+- Introduction to other Browser APIs [code](code/video_11/index.html) | [video](https://tekcasts.com)
 
 #### 👉 Error Handling and UI Resilience
 

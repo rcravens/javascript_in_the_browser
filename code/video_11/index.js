@@ -3,7 +3,7 @@ import {TripRecorder} from './trip_recorder.js'
 
 console.clear();
 console.log('Module: Data, Networking, and Other Integrations');
-console.log('Video: Introduction to Browser APIs');
+console.log('Video: Introduction to other Browser APIs');
 
 /*
 	•	Storage APIs: localStorage, sessionStorage
