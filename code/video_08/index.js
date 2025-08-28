@@ -15,9 +15,10 @@ let last_called = null;
 
 function long_running_task() {
     // simulate a long-running task
-    let i = 0;
-    while (i < 5000000000) {
-        i++;
+    const start_ms = Date.now();
+    let delta_ms = 0;
+    while (delta_ms < 3000) {
+        delta_ms = Date.now() - start_ms;
     }
 }
 
