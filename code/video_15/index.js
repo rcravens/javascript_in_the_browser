@@ -20,9 +20,11 @@ add_btn2.text('New Text');
 
 // events
 $('tbody').on('click', 'button.remove-row', evt => {
-    console.log('click', evt);
+    $(evt.target).closest('tr')
+        .fadeOut(1000, () => console.log('fade done'));
 });
 
+// ajax requests
 // ajax requests
 const url_good = 'https://jsonplaceholder.typicode.com/todos/1';
 const url_bad = 'https://jsonplaceholder.typicode.com/todos/999999';
