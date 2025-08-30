@@ -9,7 +9,7 @@ Bring your web pages to life with pure JavaScript! In this course, you’ll lear
 #### 👉 The Browser and the DOM
 
 - Browser Runtime Environment [code](code/video_01/index.html) | [video](https://tekcasts.com)
-- The DOM Explained [code](code/video_02/index.html) | [video](https://tekcasts.com)
+- Selecting & Modifying Elements [code](code/video_02/index.html) | [video](https://tekcasts.com)
 - Class and Style Manipulation [code](code/video_03/index.html) | [video](https://tekcasts.com)
 
 #### 👉 Events and Interactions
